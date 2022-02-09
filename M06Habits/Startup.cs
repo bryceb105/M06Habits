@@ -1,6 +1,7 @@
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.HttpsPolicy;
+using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
@@ -9,7 +10,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 
-namespace M06Habits
+namespace M06Habits.Models
 {
     public class Startup
     {
@@ -24,6 +25,11 @@ namespace M06Habits
         public void ConfigureServices(IServiceCollection services)
         {
             services.AddControllersWithViews();
+
+            services.AddDbContext<DataContext>(options =>
+           {
+               options.UseSqlite(Configuration["ConnectionStrings:BlahConnection"]);
+           });
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.

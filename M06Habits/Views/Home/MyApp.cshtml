@@ -1,0 +1,40 @@
+﻿@{
+    ViewData["Title"] = "My App";
+}
+
+@model M06Habits.Models.ApplicationResponse
+
+<h1>Database Form</h1>
+
+<div>
+    <form method="post">
+
+        <label asp-for="task">Task</label> @*Required*@
+        <input asp-for="task" /><br />
+
+        <label asp-for="due_date">Due Date</label>
+        <input asp-for="due_date" /><br />
+
+        <label asp-for="quadrant">Quadrant</label>@*Required*@
+        <input asp-for="quadrant" /><br />
+
+        <label asp-for="category">Category:</label>
+        <select asp-for="CategoryID">
+            <option value="">Select a Category</option>
+            @*of a type major*@
+            @foreach (Category c in ViewBag.Categories)
+            {
+                <option value="@c.CategoryID">@c.CategoryName</option>
+            }
+        </select><br />
+
+        <label asp-for="completed">Completed</label>
+        <select asp-for="completed">
+            <option value="true">Yes</option>
+            <option value="false">No</option>
+        </select><br />
+
+        <button type="submit">Submit Form</button>
+        <div asp-validation-summary="All"></div>
+    </form>
+</div>
