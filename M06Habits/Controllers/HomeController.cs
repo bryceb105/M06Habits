@@ -1,4 +1,4 @@
-﻿using M06Habits.Models;
+﻿//using M06Habits.Models;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Logging;
 using System;
@@ -17,6 +17,11 @@ namespace M06Habits.Controllers
         }
 
         public IActionResult Index()
+        {
+            return View();
+        }
+
+        public IActionResult Quadrant()
         {
             return View();
         }
