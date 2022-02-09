@@ -1,5 +1,6 @@
 ﻿using M06Habits.Models;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Logging;
 using System;
 using System.Collections.Generic;
@@ -11,10 +12,11 @@ namespace M06Habits.Controllers
 {
     public class HomeController : Controller
     {
-        private ContextBoundObject _context { get; set; }
-        public HomeController(Context x)
+        private DataContext myContext { get; set; }
+
+        public HomeController(DataContext someName)
         {
-            _context = x;
+            myContext = someName;
         }
 
         public IActionResult Index()
@@ -23,57 +25,46 @@ namespace M06Habits.Controllers
         }
 
         [HttpGet]
-        public IActionResult AddTask()
+        // get data
+
+        public IActionResult MyApp()
         {
-            ViewBag.Categories = _context.Categories.ToList();
+            ViewBag.Categories = myContext.Categories.ToList();
+
             return View();
         }
-        [HttpPost]
-        public IActionResult AddTask(ApplicationResponse response)
-        {
-            //check validity of inputs
-            if (ModelState.IsValid)
-            {
-                _context.Add(response);
-                _context.SaveChanges();
-                return View("Index");
-            }
-            //show errors if not valid
-            else
-            {
-                ViewBag.Categories = _context.Categories.ToList();
-                return View(response);
-            }
-        }
-        [HttpGet]
-        public IActionResult Edit(int id)
-        {
-            ViewBag.Categories = _context.Categories.ToList();
-
-            var task = _context.responses.Single(x => x.id == id);
-
-            return RedirectToAction("Index");
-        }
-        [HttpPost]
-        public IActionResult Edit(ApplicationResponse response)
-        {
-            _context.Update(response);
-            _context.SaveChanges();
-            return RedirectToAction("Index");
-        }
-        [HttpGet]
-        public IActionResult Delete(int id)
-        {
-            var task = _context.responses.Single(x => x.id == id);
-            return View(task);
-        }
 
         [HttpPost]
-        public IActionResult Delete(ApplicationResponse response)
+        // post data when valid
+
+        public IActionResult MyApp(ApplicationResponse ar)
         {
-            _context.responses.Remove(response);
-            _context.SaveChanges();
-            return RedirectToAction("Index");
+                if (ModelState.IsValid)
+                {
+                    myContext.Add(ar);
+                    myContext.SaveChanges();
+
+                    return View("confirmation", ar);
+                }
+                else
+                {
+
+                    ViewBag.Categories = myContext.Categories.ToList();
+                    return View(ar);
+                }
+
+        }
+
+        //List View
+        public IActionResult List()
+        {
+            var applications = myContext.Responses
+                .Include(x => x.category)
+                .ToList()
+
+                .ToList();
+
+            return View(applications); // return list of applications
         }
     }
 }
