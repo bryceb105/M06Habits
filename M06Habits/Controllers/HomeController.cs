@@ -70,9 +70,16 @@ namespace M06Habits.Controllers
         [HttpPost]
         public IActionResult Edit (ApplicationResponse ar)
         {
+            if (ModelState.IsValid)
+            {
             myContext.Update(ar);
             myContext.SaveChanges();
             return RedirectToAction("Index");
+            }
+            else
+            {
+                return RedirectToAction("Edit");
+            }
         }
         [HttpGet]
         public IActionResult Delete(int id)
