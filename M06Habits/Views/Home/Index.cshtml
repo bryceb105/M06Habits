@@ -19,6 +19,10 @@
         </thead>
         @foreach (var x in Model)
         {
+            @if (x.completed == false)
+                {
+
+                
             <tr>
                 <td>@x.task</td>
                 <td>@x.due_date</td>
@@ -30,7 +34,7 @@
                 <td><a asp-controller="Home" asp-action="Edit" asp-route-id="@x.DataId" class="btn btn-outline-primary text-center" style="width: 100px">Edit</a></td>
                 <td><a asp-controller="Home" asp-action="Delete" asp-route-id="@x.DataId" class="btn btn-outline-primary text-center" style="width: 100px">Delete</a></td>
             </tr>
-
+            }
         }
     </table>
     <br />
