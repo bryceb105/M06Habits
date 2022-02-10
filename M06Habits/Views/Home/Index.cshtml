@@ -6,144 +6,108 @@
 <div class="text-center">
     <h1 class="display-4">Task List</h1>
 </div>
+<a asp-controller="Home" asp-action="MyApp" class="btn btn-outline-success text-center mb-1">Add a Task</a>
+<br />
+
 <div>
-    <table class="table table-bordered table-striped table-hover">
-        <thead class="font-weight-bolder text-center">
-            <tr>
-                <td>Task</td>
-                <td>Due Date</td>
-                <td>Quadrant</td>
-                <td>Category</td>
-                <td>Completed</td>
-            </tr>
-        </thead>
-        @foreach (var x in Model)
-        {
-            @if (x.completed == false)
-            {
-
-
-                <tr>
-                    <td>@x.task</td>
-                    <td>@x.due_date</td>
-                    <td>@x.Category.CategoryName</td>
-                    <td>@x.completed</td>
-
-
-                    <td><a asp-controller="Home" asp-action="Edit" asp-route-id="@x.DataId" class="btn btn-outline-primary text-center" style="width: 100px">Edit</a></td>
-                    <td><a asp-controller="Home" asp-action="Delete" asp-route-id="@x.DataId" class="btn btn-outline-primary text-center" style="width: 100px">Delete</a></td>
-                </tr>
-            }
-        }
-    </table>
-
-    <div>
-        <div>
-            <h4 class="text-center">My Task Matrix</h4>
-        </div>
-
-        <div class="row border-left border-right border-top">
-            <div class="col-2 border"></div>
-            <div class="col border font-weight-bold">Urgent</div>
-            <div class="col border font-weight-bold">Not Urgent</div>
-        </div>
-
-        <div class="row border-left border-right border-top">
-            <div class="col-2 border font-weight-bold">Important</div>
-            <div class="col border">
-                Quadrant 1
-                @foreach (var x in Model)
-                {
-                    @if (x.completed == false)
-                    {
-                        @if (x.quadrant == 1)
-                        {
-                            <ul>
-                                <li class="font-weight-bold">@x.task</li>
-                                <li>@x.due_date</li>
-                                <li>@x.Category.CategoryName</li>
-                                <tli>@x.completed</tli>
-
-
-                                <li><a asp-controller="Home" asp-action="Edit" asp-route-id="@x.DataId" class="btn btn-outline-primary text-center" style="width: 100px">Edit</a></li>
-                                <li><a asp-controller="Home" asp-action="Delete" asp-route-id="@x.DataId" class="btn btn-outline-primary text-center" style="width: 100px">Delete</a></li>
-                            </ul>
-                        }
-                    }
-                }
-            </div>
-            <div class="col border">
-                Quadrant 2
-                @foreach (var x in Model)
-                {
-                    @if (x.completed == false)
-                    {
-                        @if (x.quadrant == 2)
-                        {
-                            <ul>
-                                <li class="font-weight-bold">@x.task</li>
-                                <li>@x.due_date</li>
-                                <li>@x.Category.CategoryName</li>
-                                <li>@x.completed</li>
-
-
-                                <li><a asp-controller="Home" asp-action="Edit" asp-route-id="@x.DataId" class="btn btn-outline-primary text-center" style="width: 100px">Edit</a></li>
-                                <li><a asp-controller="Home" asp-action="Delete" asp-route-id="@x.DataId" class="btn btn-outline-primary text-center" style="width: 100px">Delete</a></li>
-                            </ul>
-                        }
-                    }
-                }
-            </div>
-        </div>
-
-        <div class="row border">
-            <div class="col-2 border font-weight-bold">Not Important</div>
-            <div class="col border-right border-bottom border-left">
-                Quadrant 3
-                @foreach (var x in Model)
-                {
-                    @if (x.completed == false)
-                    {
-                        @if (x.quadrant == 3)
-                        {
-                            <ul>
-                                <li class="font-weight-bold">@x.task</li>
-                                <li>@x.due_date</li>i>
-                                <li>@x.Category.CategoryName</li>
-                                <li>@x.completed</li>
-
-
-                                <li><a asp-controller="Home" asp-action="Edit" asp-route-id="@x.DataId" class="btn btn-outline-primary text-center" style="width: 100px">Edit</a></li>
-                                <li><a asp-controller="Home" asp-action="Delete" asp-route-id="@x.DataId" class="btn btn-outline-primary text-center" style="width: 100px">Delete</a></li>
-                            </ul>
-                        }
-                    }
-                }
-            </div>
-            <div class="col border-right border-bottom border-left">
-
-                Quadrant 4
-                @foreach (var x in Model)
-                {
-                    @if (x.completed == false)
-                    {
-                        @if (x.quadrant == 4)
-                        {
-                                <p>@x.Category.CategoryName</p>
-                                <a asp-controller="Home" asp-action="Edit" asp-route-id="@x.DataId" class="btn btn-outline-primary text-center h6" style="width: 50px">Edit</a>
-                                <p class="font-weight-bold">@x.task</p>
-                                <a asp-controller="Home" asp-action="Delete" asp-route-id="@x.DataId" class="btn btn-outline-primary text-center" style="width: 50px">Delete</a>
-                                <p>(@x.due_date)</p>
-                        }
-                    }
-                }
-
-            </div>
-        </div>
+    <div class="row border-left border-right border-top">
+        <div class="col-2 border"></div>
+        <div class="col border font-weight-bold text-center">Urgent</div>
+        <div class="col border font-weight-bold text-center">Not Urgent</div>
     </div>
 
+    <div class="row border-left border-right border-top">
+        <div class="col-2 border font-weight-bold text-center">Important</div>
+        @*Quad 1*@
+        <div class="col border" style="max-height: 250px; overflow: auto">
+            <h5 class='text-center font-weight-bolder'>Quadrant 1</h5>
+            <table class="table table-hover">
 
-    <br />
+                @foreach (var x in Model)
+                {
+                    @if (x.completed == false && x.quadrant == 1)
+                    {
 
+                        <tr>
+                            <td class="font-weight-bold">@x.task</td>
+                            <td>Due: @x.due_date</td>
+                            <td>@x.Category.CategoryName</td>
+                            <td><a asp-controller="Home" asp-action="Edit" asp-route-id="@x.DataId" class="btn btn-outline-primary text-center btn-sm">Edit</a></td>
+                            <td><a asp-controller="Home" asp-action="Delete" asp-route-id="@x.DataId" class="btn btn-outline-danger text-center btn-sm">Delete</a></td>
+                        </tr>
+                    }
+                }
+            </table>
+        </div>
+        @*Quad 2*@
+        <div class="col border">
+            <h5 class='text-center font-weight-bolder'>Quadrant 2</h5>
+            <table class="table table-hover">
+
+                @foreach (var x in Model)
+                {
+                    @if (x.completed == false && x.quadrant == 2)
+                    {
+
+                        <tr>
+                            <td class="font-weight-bold">@x.task</td>
+                            <td>Due: @x.due_date</td>
+                            <td>@x.Category.CategoryName</td>
+                            <td><a asp-controller="Home" asp-action="Edit" asp-route-id="@x.DataId" class="btn btn-outline-primary text-center btn-sm">Edit</a></td>
+                            <td><a asp-controller="Home" asp-action="Delete" asp-route-id="@x.DataId" class="btn btn-outline-danger text-center btn-sm">Delete</a></td>
+                        </tr>
+                    }
+                }
+            </table>
+        </div>
+    </div>
+    @*Quad 3*@
+<div class="row border">
+    <div class="col-2 border font-weight-bold text-center">Not Important</div>
+    <div class="col border-right border-bottom border-left">
+        <h5 class='text-center font-weight-bolder'>Quadrant 3</h5>
+        <table class="table table-hover">
+
+            @foreach (var x in Model)
+            {
+                @if (x.completed == false && x.quadrant == 3)
+                {
+
+                    <tr>
+                        <td class="font-weight-bold">@x.task</td>
+                        <td>Due: @x.due_date</td>
+                        <td>@x.Category.CategoryName</td>
+                        <td><a asp-controller="Home" asp-action="Edit" asp-route-id="@x.DataId" class="btn btn-outline-primary text-center btn-sm">Edit</a></td>
+                        <td><a asp-controller="Home" asp-action="Delete" asp-route-id="@x.DataId" class="btn btn-outline-danger text-center btn-sm">Delete</a></td>
+                    </tr>
+                }
+            }
+        </table>
+    </div>
+    @*Quad 4*@
+    <div class="col border-right border-bottom border-left">
+
+        <h5 class='text-center font-weight-bolder'>Quadrant 4</h5>
+        <table class="table table-hover">
+
+            @foreach (var x in Model)
+            {
+                @if (x.completed == false && x.quadrant == 4)
+                {
+
+                    <tr>
+                        <td class="font-weight-bold">@x.task</td>
+                        <td>Due: @x.due_date</td>
+                        <td>@x.Category.CategoryName</td>
+                        <td><a asp-controller="Home" asp-action="Edit" asp-route-id="@x.DataId" class="btn btn-outline-primary text-center btn-sm">Edit</a></td>
+                        <td><a asp-controller="Home" asp-action="Delete" asp-route-id="@x.DataId" class="btn btn-outline-danger text-center btn-sm">Delete</a></td>
+                    </tr>
+                }
+            }
+        </table>
+    </div>
 </div>
-<a asp-controller="Home" asp-action="MyApp" class="btn btn-outline-primary text-center">Add a Task</a>
+</div>
+
+
+

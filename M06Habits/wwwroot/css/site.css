@@ -75,3 +75,16 @@ body {
   height: 100px;
   background: #ce8888;
 }
+
+label {
+    display: inline-block;
+    float: left;
+    clear: left;
+    width: 250px;
+    text-align: left;
+}
+
+input, select {
+    display: inline-block;
+    float: left;
+}

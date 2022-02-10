@@ -50,29 +50,38 @@ namespace M06Habits.Migrations
                         new
                         {
                             DataId = 1,
-                            CategoryID = 1,
+                            CategoryID = 2,
                             completed = false,
-                            due_date = "Feb. 28,2000",
-                            quadrant = 4,
-                            task = "Example Task"
+                            due_date = "Feb 15, 2022",
+                            quadrant = 1,
+                            task = "Midterm"
                         },
                         new
                         {
                             DataId = 2,
-                            CategoryID = 2,
-                            completed = true,
-                            due_date = "Feb. 27,2000",
-                            quadrant = 3,
-                            task = "2nd Example Task"
+                            CategoryID = 1,
+                            completed = false,
+                            due_date = "Feb 20, 2022",
+                            quadrant = 2,
+                            task = "Pickleball"
                         },
                         new
                         {
                             DataId = 3,
                             CategoryID = 3,
+                            completed = true,
+                            due_date = "Feb 26, 2022",
+                            quadrant = 3,
+                            task = "Interuption"
+                        },
+                        new
+                        {
+                            DataId = 4,
+                            CategoryID = 1,
                             completed = false,
-                            due_date = "Feb. 26,2000",
-                            quadrant = 2,
-                            task = "3rd Example Task"
+                            due_date = "Feb 28, 2022",
+                            quadrant = 4,
+                            task = "Check Insta"
                         });
                 });
 

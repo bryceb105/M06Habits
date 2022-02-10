@@ -5,38 +5,41 @@
 @model M06Habits.Models.ApplicationResponse
 
 <h1>Add/Edit Task</h1>
-
+<br /><br />
 <div class="text-center">
-    <form method="post" class="form text-center">
+    <form method="post">
 
-
-        <label asp-for="task">Task</label> @*Required*@
-        <input asp-for="task" /><br />
-
-        <label asp-for="due_date">Due Date</label>
-        <input asp-for="due_date" /><br />
-
-        <label asp-for="quadrant">Quadrant</label>@*Required*@
-        <input asp-for="quadrant" /><br />
-
-        <label asp-for="category">Category:</label>
-        <select asp-for="CategoryID">
+        <div class="form-group">
+            <label asp-for="task">Task</label> @*Required*@
+            <input class="form-control-sm" asp-for="task" /><br />
+        </div>
+        <div class="form-group">
+            <label asp-for="due_date">Due Date</label>
+            <input class="form-control-sm" asp-for="due_date" /><br />
+        </div> 
+        <div class="form-group">
+            <label asp-for="quadrant">Quadrant</label>@*Required*@
+            <input class="form-control-sm" asp-for="quadrant" /><br />
+        </div>
+        <label asp-for="category">Category</label>
+        <select class="form-control-sm" asp-for="CategoryID">
             <option value="">Select a Category</option>
             @*of a type task*@
             @foreach (Category c in ViewBag.Categories)
             {
                 <option value="@c.CategoryID">@c.CategoryName</option>
             }
-        </select><br />
-
-        <label asp-for="completed">Completed</label>
-        <select asp-for="completed">
-            <option value="true">Yes</option>
-            <option value="false">No</option>
-        </select><br />
-        <input type="hidden" asp-for="DataId" />
-        <a asp-controller="Home" asp-action="index" class="btn btn-outline-primary">Cancel</a>
-        <button type="submit" class="btn btn-outline-primary">Add Task</button>
-        <div asp-validation-summary="All"></div>
+        </select><br /><br />
+        <div class="form-group">
+            <label asp-for="completed">Completed</label>
+            <select class="form-control-sm" asp-for="completed">
+                <option value="true">Yes</option>
+                <option value="false">No</option>
+            </select><br /></div>
+            <input type="hidden" asp-for="DataId" />
+        <br />
+            <a asp-controller="Home" asp-action="index" class="btn btn-outline-danger float-left m-1">Cancel</a>
+            <button type="submit" class="btn btn-outline-success float-left m-1">Add Task</button>
+            <div asp-validation-summary="All"></div>
     </form>
 </div>

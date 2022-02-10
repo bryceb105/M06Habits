@@ -32,28 +32,37 @@ namespace M06Habits.Models
                 new ApplicationResponse
                 {
                     DataId = 1,
-                    task = "Example Task",
-                    due_date = "Feb. 28,2000",
-                    quadrant = 4,
-                    CategoryID = 1,
+                    task = "Midterm",
+                    due_date = "Feb 15, 2022",
+                    quadrant = 1,
+                    CategoryID = 2,
                     completed = false
                 },
                 new ApplicationResponse
                 {
                     DataId = 2,
-                    task = "2nd Example Task",
-                    due_date = "Feb. 27,2000",
-                    quadrant = 3,
-                    CategoryID = 2,
-                    completed = true
+                    task = "Pickleball",
+                    due_date = "Feb 20, 2022",
+                    quadrant = 2,
+                    CategoryID = 1,
+                    completed = false
                 },
                 new ApplicationResponse
                 {
                     DataId = 3,
-                    task = "3rd Example Task",
-                    due_date = "Feb. 26,2000",
-                    quadrant = 2,
+                    task = "Interuption",
+                    due_date = "Feb 26, 2022",
+                    quadrant = 3,
                     CategoryID = 3,
+                    completed = true
+                },
+                new ApplicationResponse
+                {
+                    DataId = 4,
+                    task = "Check Insta",
+                    due_date = "Feb 28, 2022",
+                    quadrant = 4,
+                    CategoryID = 1,
                     completed = false
                 }
             );

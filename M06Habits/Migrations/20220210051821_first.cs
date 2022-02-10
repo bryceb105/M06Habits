@@ -66,17 +66,22 @@ namespace M06Habits.Migrations
             migrationBuilder.InsertData(
                 table: "Responses",
                 columns: new[] { "DataId", "CategoryID", "category", "completed", "due_date", "quadrant", "task" },
-                values: new object[] { 1, 1, null, false, "Feb. 28,2000", 4, "Example Task" });
+                values: new object[] { 2, 1, null, false, "Feb 20, 2022", 2, "Pickleball" });
 
             migrationBuilder.InsertData(
                 table: "Responses",
                 columns: new[] { "DataId", "CategoryID", "category", "completed", "due_date", "quadrant", "task" },
-                values: new object[] { 2, 2, null, true, "Feb. 27,2000", 3, "2nd Example Task" });
+                values: new object[] { 4, 1, null, false, "Feb 28, 2022", 4, "Check Insta" });
 
             migrationBuilder.InsertData(
                 table: "Responses",
                 columns: new[] { "DataId", "CategoryID", "category", "completed", "due_date", "quadrant", "task" },
-                values: new object[] { 3, 3, null, false, "Feb. 26,2000", 2, "3rd Example Task" });
+                values: new object[] { 1, 2, null, false, "Feb 15, 2022", 1, "Midterm" });
+
+            migrationBuilder.InsertData(
+                table: "Responses",
+                columns: new[] { "DataId", "CategoryID", "category", "completed", "due_date", "quadrant", "task" },
+                values: new object[] { 3, 3, null, true, "Feb 26, 2022", 3, "Interuption" });
 
             migrationBuilder.CreateIndex(
                 name: "IX_Responses_CategoryID",
