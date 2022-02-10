@@ -20,23 +20,129 @@
         @foreach (var x in Model)
         {
             @if (x.completed == false)
-                {
-
-                
-            <tr>
-                <td>@x.task</td>
-                <td>@x.due_date</td>
-                <td>@x.quadrant</td>
-                <td>@x.Category.CategoryName</td>
-                <td>@x.completed</td>
+            {
 
 
-                <td><a asp-controller="Home" asp-action="Edit" asp-route-id="@x.DataId" class="btn btn-outline-primary text-center" style="width: 100px">Edit</a></td>
-                <td><a asp-controller="Home" asp-action="Delete" asp-route-id="@x.DataId" class="btn btn-outline-primary text-center" style="width: 100px">Delete</a></td>
-            </tr>
+                <tr>
+                    <td>@x.task</td>
+                    <td>@x.due_date</td>
+                    <td>@x.Category.CategoryName</td>
+                    <td>@x.completed</td>
+
+
+                    <td><a asp-controller="Home" asp-action="Edit" asp-route-id="@x.DataId" class="btn btn-outline-primary text-center" style="width: 100px">Edit</a></td>
+                    <td><a asp-controller="Home" asp-action="Delete" asp-route-id="@x.DataId" class="btn btn-outline-primary text-center" style="width: 100px">Delete</a></td>
+                </tr>
             }
         }
     </table>
+
+    <div>
+        <div>
+            <h4 class="text-center">My Task Matrix</h4>
+        </div>
+
+        <div class="row border-left border-right border-top">
+            <div class="col-2 border"></div>
+            <div class="col border font-weight-bold">Urgent</div>
+            <div class="col border font-weight-bold">Not Urgent</div>
+        </div>
+
+        <div class="row border-left border-right border-top">
+            <div class="col-2 border font-weight-bold">Important</div>
+            <div class="col border">
+                Quadrant 1
+                @foreach (var x in Model)
+                {
+                    @if (x.completed == false)
+                    {
+                        @if (x.quadrant == 1)
+                        {
+                            <ul>
+                                <li class="font-weight-bold">@x.task</li>
+                                <li>@x.due_date</li>
+                                <li>@x.Category.CategoryName</li>
+                                <tli>@x.completed</tli>
+
+
+                                <li><a asp-controller="Home" asp-action="Edit" asp-route-id="@x.DataId" class="btn btn-outline-primary text-center" style="width: 100px">Edit</a></li>
+                                <li><a asp-controller="Home" asp-action="Delete" asp-route-id="@x.DataId" class="btn btn-outline-primary text-center" style="width: 100px">Delete</a></li>
+                            </ul>
+                        }
+                    }
+                }
+            </div>
+            <div class="col border">
+                Quadrant 2
+                @foreach (var x in Model)
+                {
+                    @if (x.completed == false)
+                    {
+                        @if (x.quadrant == 2)
+                        {
+                            <ul>
+                                <li class="font-weight-bold">@x.task</li>
+                                <li>@x.due_date</li>
+                                <li>@x.Category.CategoryName</li>
+                                <li>@x.completed</li>
+
+
+                                <li><a asp-controller="Home" asp-action="Edit" asp-route-id="@x.DataId" class="btn btn-outline-primary text-center" style="width: 100px">Edit</a></li>
+                                <li><a asp-controller="Home" asp-action="Delete" asp-route-id="@x.DataId" class="btn btn-outline-primary text-center" style="width: 100px">Delete</a></li>
+                            </ul>
+                        }
+                    }
+                }
+            </div>
+        </div>
+
+        <div class="row border">
+            <div class="col-2 border font-weight-bold">Not Important</div>
+            <div class="col border-right border-bottom border-left">
+                Quadrant 3
+                @foreach (var x in Model)
+                {
+                    @if (x.completed == false)
+                    {
+                        @if (x.quadrant == 3)
+                        {
+                            <ul>
+                                <li class="font-weight-bold">@x.task</li>
+                                <li>@x.due_date</li>i>
+                                <li>@x.Category.CategoryName</li>
+                                <li>@x.completed</li>
+
+
+                                <li><a asp-controller="Home" asp-action="Edit" asp-route-id="@x.DataId" class="btn btn-outline-primary text-center" style="width: 100px">Edit</a></li>
+                                <li><a asp-controller="Home" asp-action="Delete" asp-route-id="@x.DataId" class="btn btn-outline-primary text-center" style="width: 100px">Delete</a></li>
+                            </ul>
+                        }
+                    }
+                }
+            </div>
+            <div class="col border-right border-bottom border-left">
+
+                Quadrant 4
+                @foreach (var x in Model)
+                {
+                    @if (x.completed == false)
+                    {
+                        @if (x.quadrant == 4)
+                        {
+                                <p>@x.Category.CategoryName</p>
+                                <a asp-controller="Home" asp-action="Edit" asp-route-id="@x.DataId" class="btn btn-outline-primary text-center h6" style="width: 50px">Edit</a>
+                                <p class="font-weight-bold">@x.task</p>
+                                <a asp-controller="Home" asp-action="Delete" asp-route-id="@x.DataId" class="btn btn-outline-primary text-center" style="width: 50px">Delete</a>
+                                <p>(@x.due_date)</p>
+                        }
+                    }
+                }
+
+            </div>
+        </div>
+    </div>
+
+
     <br />
 
 </div>

@@ -1,6 +1,8 @@
 ﻿@{
     ViewData["Title"] = "My Tasks";
 }
+@model List<ApplicationResponse>
+
 
 <div>
     <div>
@@ -15,7 +17,29 @@
 
     <div class="row border-left border-right border-top">
         <div class="col-2 border font-weight-bold">Important</div>
-        <div class="col border">Uno</div>
+        <div class="col border">
+            Quadrant 1
+            @foreach (var x in Model)
+            {
+                @if (x.completed == false)
+                {
+                    @if (x.quadrant == 1)
+                    {
+                        <ul>
+                            <li>@x.task</li>
+                            <li>@x.due_date</li>
+                            <li>@x.quadrant</li>
+                            <li>@x.Category.CategoryName</li>
+                            <tli>@x.completed</tli>
+
+
+                            <li><a asp-controller="Home" asp-action="Edit" asp-route-id="@x.DataId" class="btn btn-outline-primary text-center" style="width: 100px">Edit</a></li>
+                            <li><a asp-controller="Home" asp-action="Delete" asp-route-id="@x.DataId" class="btn btn-outline-primary text-center" style="width: 100px">Delete</a></li>
+                        </ul>
+                    }
+                }
+            }
+        </div>
         <div class="col border">Dos</div>
     </div>
 
