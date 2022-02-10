@@ -1,4 +1,4 @@
-﻿using M06Habits.Models;
+﻿//using M06Habits.Models;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Logging;
@@ -87,6 +87,11 @@ namespace M06Habits.Controllers
             myContext.Responses.Remove(response);
             myContext.SaveChanges();
             return RedirectToAction("Index");
+        }
+
+        public IActionResult Quadrant()
+        {
+            return View();
         }
     }
 }
