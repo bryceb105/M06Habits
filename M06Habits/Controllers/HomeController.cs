@@ -14,14 +14,17 @@ namespace M06Habits.Controllers
     {
         private DataContext myContext { get; set; }
 
-        public HomeController(DataContext someName)
+        public HomeController(DataContext x)
         {
-            myContext = someName;
+            myContext = x;
         }
 
         public IActionResult Index()
         {
-            return View();
+            var tasks = myContext.Responses
+                .Include(x => x.Category)
+                .ToList();
+            return View(tasks);
         }
 
         [HttpGet]
@@ -44,7 +47,7 @@ namespace M06Habits.Controllers
                     myContext.Add(ar);
                     myContext.SaveChanges();
 
-                    return View("confirmation", ar);
+                    return RedirectToAction("Index");
                 }
                 else
                 {
@@ -55,16 +58,36 @@ namespace M06Habits.Controllers
 
         }
 
-        //List View
-        public IActionResult List()
+        [HttpGet]
+        public IActionResult Edit(int id)
         {
-            var applications = myContext.Responses
-                .Include(x => x.category)
-                .ToList()
+            ViewBag.Categories = myContext.Categories.ToList();
 
-                .ToList();
+            var task = myContext.Responses.Single(x => x.DataId == id);
 
-            return View(applications); // return list of applications
+            return View("MyApp", task);
+        }
+        [HttpPost]
+        public IActionResult Edit (ApplicationResponse ar)
+        {
+            myContext.Update(ar);
+            myContext.SaveChanges();
+            return RedirectToAction("Index");
+        }
+        [HttpGet]
+        public IActionResult Delete(int id)
+        {
+            var task = myContext.Responses.Single(x => x.DataId == id);
+            return View(task);
+        }
+
+        [HttpPost]
+        public IActionResult Delete(ApplicationResponse response)
+        {
+            myContext.Responses.Remove(response);
+            myContext.SaveChanges();
+            return RedirectToAction("Index");
         }
     }
 }
+

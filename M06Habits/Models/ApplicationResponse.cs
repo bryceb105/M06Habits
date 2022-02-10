@@ -17,6 +17,7 @@ namespace M06Habits.Models
         public string due_date { get; set; }
 
         [Required]
+        [Range(1,4)]
         public int quadrant { get; set; }
 
         public string category { get; set; }
