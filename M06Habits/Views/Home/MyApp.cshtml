@@ -9,6 +9,7 @@
 <div class="text-center">
     <form method="post" class="form text-center">
 
+
         <label asp-for="task">Task</label> @*Required*@
         <input asp-for="task" /><br />
 
@@ -33,6 +34,7 @@
             <option value="true">Yes</option>
             <option value="false">No</option>
         </select><br />
+        <input type="hidden" asp-for="DataId" />
         <a asp-controller="Home" asp-action="index" class="btn btn-outline-primary">Cancel</a>
         <button type="submit" class="btn btn-outline-primary">Add Task</button>
         <div asp-validation-summary="All"></div>

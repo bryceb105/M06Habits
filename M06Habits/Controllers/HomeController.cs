@@ -34,7 +34,7 @@ namespace M06Habits.Controllers
         {
             ViewBag.Categories = myContext.Categories.ToList();
 
-            return View();
+            return View(new ApplicationResponse());
         }
 
         [HttpPost]
@@ -47,7 +47,7 @@ namespace M06Habits.Controllers
                     myContext.Add(ar);
                     myContext.SaveChanges();
 
-                    return RedirectToAction("Index");
+                    return RedirectToAction ("Index");
                 }
                 else
                 {
