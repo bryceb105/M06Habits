@@ -1,13 +1,13 @@
 ﻿@{
-    ViewData["Title"] = "My App";
+    ViewData["Title"] = "Add or Edit Tasks";
 }
 
 @model M06Habits.Models.ApplicationResponse
 
-<h1>Database Form</h1>
+<h1>Add/Edit Task</h1>
 
-<div>
-    <form method="post">
+<div class="text-center">
+    <form method="post" class="form text-center">
 
         <label asp-for="task">Task</label> @*Required*@
         <input asp-for="task" /><br />
@@ -21,7 +21,7 @@
         <label asp-for="category">Category:</label>
         <select asp-for="CategoryID">
             <option value="">Select a Category</option>
-            @*of a type major*@
+            @*of a type task*@
             @foreach (Category c in ViewBag.Categories)
             {
                 <option value="@c.CategoryID">@c.CategoryName</option>
@@ -33,8 +33,8 @@
             <option value="true">Yes</option>
             <option value="false">No</option>
         </select><br />
-
-        <button type="submit">Submit Form</button>
+        <a asp-controller="Home" asp-action="index" class="btn btn-outline-primary">Cancel</a>
+        <button type="submit" class="btn btn-outline-primary">Add Task</button>
         <div asp-validation-summary="All"></div>
     </form>
 </div>
